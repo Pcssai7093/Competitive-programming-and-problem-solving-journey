@@ -1,0 +1,22 @@
+class Solution
+{
+    public static void sort012(int arr[], int n)
+    {
+        // code here 
+        int cnt1=0,cnt2=0,cnt3=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==0)
+            cnt1++;
+            else if(arr[i]==1)
+            cnt2++;
+            else
+            cnt3++;
+        }
+        Arrays.fill(arr,0,cnt1,0);
+        Arrays.fill(arr,cnt1,cnt1+cnt2,1);
+        Arrays.fill(arr,cnt1+cnt2,cnt1+cnt2+cnt3,2);
+        
+    
+        
+    }
+}
