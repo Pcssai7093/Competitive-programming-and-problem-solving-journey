@@ -1,0 +1,73 @@
+class Solution
+{
+	
+	void addLeafs(ArrayList <Integer> l,HashSet<Node> s,Node node){
+	    if(node==null)
+	    return;
+        
+        
+	    addLeafs(l,s,node.left);
+	    if(node.left==null&&node.right==null&&!s.contains(node))
+	    {
+	        s.add(node);
+	        l.add(node.data);
+	    }
+	    addLeafs(l,s,node.right);
+	}
+	
+	void addLeft(ArrayList <Integer> l,HashSet<Node> s,Node node){
+	    if(node==null)
+	    return;
+	    
+	    if(!s.contains(node)){
+	        s.add(node);
+	        l.add(node.data);
+	    }
+	    if(node.left==null)
+	    addLeft(l,s,node.right);
+	    else
+	    addLeft(l,s,node.left);
+	}
+	
+	void addRight(ArrayList <Integer> l,HashSet<Node> s,Node node){
+	    if(node==null)
+	    return;
+	    
+	   // addRight(l,s,node.right);
+	    
+	    if(node.right==null)
+	    addRight(l,s,node.left);
+	    else
+	    addRight(l,s,node.right);
+	    
+	    if(!s.contains(node)){
+	        s.add(node);
+	        l.add(node.data);
+	    }
+	}
+	ArrayList<Integer> boundary(Node node)
+	{
+	    HashSet<Node> s=new HashSet<>();
+	    ArrayList<Integer> l=new ArrayList<>();
+	    Node temp=node;
+	   
+	   if(node.left==null){
+	       s.add(node);
+	       l.add(node.data);
+	   }
+	   else
+	   addLeft(l,s,node);
+	   addLeafs(l,s,node);
+	   if(node.right==null){
+	       if(!s.contains(node)){
+	       s.add(node);
+	       l.add(node.data);
+	       }
+	   }
+	   else
+	   addRight(l,s,node);
+	    
+	    return l;
+	    
+	}
+}
