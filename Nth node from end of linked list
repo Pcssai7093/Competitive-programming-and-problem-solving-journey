@@ -21,6 +21,5 @@ class GfG
          }
          int t=prev.data;
          return t;
-
     }
 }
