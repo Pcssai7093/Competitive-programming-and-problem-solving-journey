@@ -1,0 +1,58 @@
+class Solution
+{
+    //Function to find whether a path exists from the source to destination.
+    static class pair{
+        int x;
+        int y;
+        public pair(int x,int y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+    boolean isValidIndex(int x,int y,int r,int c){
+        if(x<0||x>=r||y<0||y>=c){
+            return false;
+        }
+        return true;
+    }
+    public boolean is_Possible(int[][] grid)
+    {
+        // Code here
+        int r=grid.length;
+        int c=grid[0].length;
+        int[] dx={0,1,0,-1},dy={1,0,-1,0};
+        
+        pair src=new pair(0,0);
+        loop1:
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(grid[i][j]==1){
+                    src=new pair(i,j);
+                    break loop1;
+                }
+                
+            }
+        }
+        
+        Queue<pair> q=new LinkedList<>();
+        q.add(src);
+        
+        while(!q.isEmpty()){
+            pair temp=q.poll();
+            int x=temp.x;
+            int y=temp.y;
+            if(grid[x][y]==2)
+            return true;
+            grid[x][y]=0;
+            
+            for(int i=0;i<4;i++){
+                int nx=temp.x+dx[i],ny=temp.y+dy[i];
+                if(isValidIndex(nx,ny,r,c)&&grid[nx][ny]!=0){
+                    q.add(new pair(nx,ny));
+                }
+            }
+        }
+
+        
+    return false;}
+}
