@@ -1,0 +1,33 @@
+class Solution
+{
+    static Node list=null;
+    static Node listt=null;
+    static void f1(Node root){
+        if(root==null)
+        return;
+        
+            // System.out.println(root.data);
+        if(list==null){
+        list=new Node(root.data);
+        listt=list;
+        }
+        else{
+            // list.left=null;
+            list.right=new Node(root.data);
+            list=list.right;
+        }
+        f1(root.left);
+        f1(root.right);
+    }
+    
+    public static void flatten(Node root)
+    {
+        //code here
+        list=null;
+        f1(root);
+        // System.out.println(listt.right.right.right.right.data);
+        root.left=null;
+        root.right=listt.right;
+        // System.out.println(root.right.right.data);
+    }
+}
