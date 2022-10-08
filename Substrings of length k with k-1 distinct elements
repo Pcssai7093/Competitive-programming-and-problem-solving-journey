@@ -1,0 +1,52 @@
+class Solution {
+    static int countOfSubstrings(String S, int K) {
+        int cnt=0,p=0,q=K-1,tcnt=(K-1),len=S.length(),retcnt=0;
+        HashMap<Character,Integer> m=new HashMap<>();
+        // code here
+        for(int i=0;i<=q;i++){
+            char ch=S.charAt(i);
+            if(m.containsKey(ch)){
+                m.replace(ch,m.get(ch)+1);
+            }
+            else{
+                cnt++;
+                m.put(ch,1);
+            }
+        }
+        // System.out.println(cnt+" "+tcnt);
+        if(cnt==tcnt)
+        retcnt++;
+        q++;
+        while(q<len){
+            char removeChar=S.charAt(p);
+            
+            if(m.containsKey(removeChar))
+            if(m.get(removeChar)==1){
+                cnt--;
+                m.remove(removeChar);
+            }
+            else{
+                // cnt--;
+                m.replace(removeChar,m.get(removeChar)-1);
+            }
+            p++;
+            
+            char addChar=S.charAt(q);
+            
+            if(!m.containsKey(addChar)){
+                cnt++;
+                // m.remove(remove)
+                m.put(addChar,1);
+            }
+            else{
+                m.replace(addChar,m.get(addChar)+1);
+            }
+            q++;
+            // System.out.println(cnt+" "+tcnt+" "+addChar);
+            if(cnt==tcnt)
+            retcnt++;
+        }
+    return retcnt;
+        
+    }
+};
