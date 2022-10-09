@@ -1,0 +1,32 @@
+class Solution
+{
+    static int a[]=new int[100001];
+    static  TreeMap<Integer,Integer> p=new TreeMap<>();
+   static boolean flag=true;
+    static void method(){
+         Arrays.fill(a,1);
+        a[0]=0;
+        a[1]=0;
+      for(int i=2;i*i<=100000;i++){
+          if(a[i]==1){
+              for(int j=i*2;j<=100000;j+=i){
+                  a[j]=0;
+              }
+          }
+      }
+       for(int i=0;i<=100000;i++){
+           if(a[i]==1) p.put(i,1);
+       }
+    flag=false;
+    public int NthTerm(int N)
+    {
+       if(flag) method();
+       Integer m=p.lowerKey(N);
+       Integer a=p.higherKey(N);
+       if(p.get(N)!=null) return 0;
+       if(m!=null && a!=null)  return Math.min(Math.abs(N-m),Math.abs(N-a));
+       if(m==null) return Math.abs(N-a);
+       return Math.abs(N-m);
+    }
+}
+
