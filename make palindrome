@@ -1,0 +1,43 @@
+class Solution {
+    public static boolean makePalindrome(int n, String[] arr) {
+        // code here
+        HashSet<String> s=new HashSet<>();
+        
+        for(int i=0;i<n;i++){
+            String str=arr[i];
+            String revstr=(new StringBuffer(str)).reverse().toString();
+            if(s.contains(revstr)){
+                s.remove(revstr);
+            }
+            else{
+                s.add(str);
+            }
+        }
+        // System.out.println(s);
+     ArrayList<String> l=new ArrayList<>(s);
+    //   System.out.println(l);
+        if(l.size()==1){
+            String t=l.get(0);
+            String revt=(new StringBuffer(t)).reverse().toString();
+            if(t.compareTo(revt)==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            StringBuffer sb=new StringBuffer();
+            for(int j=0;j<l.size();j++){
+                sb.append(l.get(j));
+            }
+            //  System.out.println(sb);
+            if(sb.toString().equals(sb.reverse().toString()))
+            return true;
+        }
+        // System.out.println("hello");
+        
+        return false;
+    }
+}
+        
