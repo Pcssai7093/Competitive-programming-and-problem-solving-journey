@@ -1,0 +1,49 @@
+class Solution
+{
+    public long[] smallerSum(int n,int arr[])
+    {
+    // int[] brr=arr.clone();
+    // Arrays.sort(arr);
+    HashMap<Integer,Integer> m=new HashMap<>();
+    long[] a=new long[n];
+    // long sum=0l;
+    for(int i=0;i<n;i++){
+        int elem=arr[i];
+        if(!m.containsKey(elem)){
+            m.put(elem,1);
+            // sum+=arr[i];
+        }
+        else{
+            m.replace(elem,m.get(elem)+1);
+        }
+    }
+    
+    
+    ArrayList<Map.Entry<Integer,Integer>> l=new ArrayList<>(m.entrySet());
+    Collections.sort(l,new Comparator<Map.Entry<Integer,Integer>>(){
+        public int compare(Map.Entry<Integer,Integer> a, Map.Entry<Integer,Integer> b){
+            return a.getKey()-b.getKey();
+        }
+    });
+    
+     HashMap<Integer,Long> mp=new HashMap<>();
+        long sum=0l;
+        int size=l.size();
+    for(int i=0;i<size;i++){
+    Map.Entry<Integer,Integer> elem=l.get(i);
+        
+        if(!mp.containsKey(elem.getKey())){
+            mp.put(elem.getKey(),sum);
+            sum+=elem.getKey()*elem.getValue();
+        }
+        // int elem=brr[i];
+        // a[i]=m.get(elem);
+    }
+    
+    for(int i=0;i<n;i++){
+        a[i]=mp.get(arr[i]);
+    }
+    
+    return a;
+    }
+}
