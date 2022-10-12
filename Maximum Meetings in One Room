@@ -1,0 +1,35 @@
+class Solution {
+    static class pair{
+        int x,y,index;
+        
+        public pair(int x,int y,int index){
+            this.x=x;
+            this.y=y;
+            this.index=index;
+        }
+    }
+    public static ArrayList<Integer> maxMeetings(int N, int[] S, int[] F) {
+        // code here
+        ArrayList<Integer> l=new ArrayList<>();
+        if(N==1){
+            l.add(1);
+        return l;
+        }
+        pair[] tr=new pair[N];
+        for(int i=0;i<N;i++){
+            tr[i]=new pair(S[i],F[i],i+1);
+        }
+        Arrays.sort(tr,(pair a,pair b)->{return a.y-b.y;});
+        
+       int met=1,time=tr[0].y;
+       l.add(tr[0].index);
+        for(int i=1;i<N;i++){
+            if(tr[i].x>time){
+                met++;
+                time=tr[i].y;
+                l.add(tr[i].index);
+            }
+        }
+        Collections.sort(l);
+    return l;}
+}
