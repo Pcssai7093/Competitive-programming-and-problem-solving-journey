@@ -1,0 +1,33 @@
+class Solution
+{
+	// Function to find the peak element
+	// arr[]: input array
+	// n: size of array a[]
+	public int peakElement(int[] arr,int n)
+    {
+       //add code here.
+       if(n==1)
+       return 0;
+       
+       for(int i=0;i<n;i++){
+          int adj1=i-1;
+           int adj2=i+1;
+           
+
+           if(adj1>=0&&adj2<n){
+               if(arr[i]>=arr[adj1]&&arr[i]>=arr[adj2])
+               return i;
+           }
+           else if(adj1>=0){
+               if(arr[i]>=arr[adj1])
+               return i;
+           }
+           else if(adj2<n){
+            //   System.out.println(arr[i]+" "+arr[adj2]);
+               if(arr[i]>=arr[adj2])
+               return i;
+           }
+       }
+   return -1;
+   }
+}
