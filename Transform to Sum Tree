@@ -1,0 +1,44 @@
+class Solution{
+    
+    public static int f(Node root){
+        // Node l=root.left,r=Node.right;
+        if(root==null)
+        return 0;
+        
+        if(root.left==null&&root.right==null){
+            int val=root.data;
+            root.data=0;
+            return val;
+        }
+        
+        int cval=root.data;
+        int a =0,b=0;
+        if(root.left!=null)
+            a=f(root.left);
+        if(root.right!=null)
+            b=f(root.right);
+        root.data=a+b;
+        
+        return root.data+cval;
+    }
+    
+    public static int height(Node root){
+        if(root==null)
+        return 0;
+        
+        int l=height(root.left);
+        int r=height(root.right);
+        
+        if(l>r){
+            return l+1;
+        }
+        else {
+            return r+1;
+        }
+        
+    }
+    public void toSumTree(Node root){
+         //add code here.
+        f(root);
+    }
+}
