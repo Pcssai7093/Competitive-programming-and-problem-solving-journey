@@ -1,0 +1,29 @@
+class Solution {
+    public int countOdds(int low, int high) {
+        
+        boolean a = (low%2==0);
+        boolean b = (high%2==0);
+        if(a==true&&b==true){
+            return (high-low)/2;
+        }
+
+        if(a==true&&b==false){
+            return ((high+1)-low)/2;
+        }
+
+        if(a==false&&b==true){
+            return ((high)-(low-1))/2;
+        }
+
+        if(a==false&&b==false){
+            return ((high+1)-(low-1))/2;
+        }
+        // while(low<=high){
+        //     if(low%2==1)
+        //     cnt++;
+
+        //     low++;
+        // }
+
+    return 0;}
+}
