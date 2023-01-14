@@ -1,0 +1,21 @@
+class Solution {
+    public int largestPerimeter(int[] nums) {
+        // Arrays.sort(nums);
+        // System.out.println(Arrays.asList(nums));
+        // List<Integer> l=Arrays.stream(nums).boxed().collect(Collectors.toList());
+        // Collections.sort(l,(a,b)->(b-a));
+        // int[] arr=l.stream().mapToInt(a->a).toArray();
+        Arrays.sort(nums);
+        // System.out.println(arr[0]);
+        // Collections.sort
+        int len=nums.length;
+        for(int i=(len-1);i>=2;i--){
+            int sum=nums[i-1]+nums[i-2];
+            int e=nums[i];
+           if(sum>e){
+               return (sum+e);
+           }
+        }
+        return 0;
+    }
+}
