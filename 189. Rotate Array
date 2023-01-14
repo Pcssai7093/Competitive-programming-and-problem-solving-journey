@@ -1,0 +1,22 @@
+class Solution {
+    public int[] reverse(int[] nums,int p,int q){
+        int temp=0;
+        while(p<q){
+            temp=nums[p];
+            nums[p]=nums[q];
+            nums[q]=temp;
+            p++;
+            q--;
+        }
+        return nums;
+    }
+
+    public void rotate(int[] nums, int k) {
+        int len=nums.length;
+        k=k%len;
+        int[] arr=reverse(nums,0,len-k-1);
+        arr=reverse(arr,len-k,len-1);
+        arr=reverse(arr,0,len-1);
+        nums=arr;
+    }
+}
