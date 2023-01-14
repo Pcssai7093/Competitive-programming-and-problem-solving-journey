@@ -1,0 +1,52 @@
+class Solution {
+    public ListNode reverseList(ListNode head) {
+
+        ListNode prev=null,curr=head,then=null;
+
+        while(curr!=null){
+            then=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=then;
+        }
+
+        head=prev;
+
+        return head;
+        
+    }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        long n1=0,n2=0;
+        ListNode t1=l1,t2=l2;
+        int C=0;
+        ListNode temp=null;
+        while(t1!=null && t2!=null){
+            int d1=t1.val,d2=t2.val;
+            int D=(d1+d2+C)%10;
+            temp=new ListNode(D,temp);
+            C=(d1+d2+C)/10;
+            t1=t1.next;
+            t2=t2.next;
+        }
+        if(t2==null){
+            t2=t1;
+        }
+
+        
+            while(t2!=null){
+                int d=t2.val;
+                temp=new ListNode((d+C)%10,temp);
+                C=(d+C)/10;
+                t2=t2.next;
+            }
+        if(C!=0)
+        temp=new ListNode(C,temp);
+        
+
+        ListNode sum=temp;
+
+        return reverseList(sum);
+        
+    }
+}
