@@ -1,0 +1,41 @@
+class Solution {
+    public static class pair{
+        int x;
+        int y;
+        public pair(int x,int y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+
+    public static boolean isValid(int r,int c,int x,int y){
+        if(x<0||x>=r||y<0||y>=c)
+        return false;
+
+        return true;
+    }
+
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int r=image.length,c=image[0].length;
+        boolean visited[][] = new boolean[r][c];
+        Queue<pair> q=new LinkedList<>();
+        int[] dx={0,-1,1,0},dy={1,0,0,-1};
+        pair src=new pair(sr,sc);
+        int sColor=image[sr][sc];
+        q.add(src);
+
+        while(!q.isEmpty()){
+            pair head=q.poll();
+            visited[head.x][head.y]=true;
+            image[head.x][head.y]=color;
+            for(int i=0;i<4;i++){
+                int nx=head.x+dx[i],ny=head.y+dy[i];
+                if(isValid(r,c,nx,ny)&&!visited[nx][ny]&&image[nx][ny]==sColor){
+                    q.add(new pair(nx,ny));
+                }
+            }
+        }
+
+    return image;
+    }
+}
