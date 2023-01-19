@@ -1,0 +1,21 @@
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        int len1=word1.length(),len2=word2.length();
+        String res="";
+        int p=0,q=0,itr=0;
+        while(p<len1&&q<len2){
+            if(itr%2==0){
+                res=res+Character.toString(word1.charAt(p++));
+            }
+            else{
+                res=res+Character.toString(word2.charAt(q++));
+            }
+            itr++;
+        }
+        if(p<len1){
+            return res+word1.substring(p,len1);
+        }
+            return res+word2.substring(q,len2);
+        
+    }
+}
