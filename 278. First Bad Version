@@ -1,0 +1,17 @@
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int s=1,e=n;
+
+        while(s<e){
+            int mid=(int)(((long)s+(long)e)/2);
+            // int mid
+            // System.out.println(mid);
+            if(isBadVersion(mid)==false)
+            s=mid+1;
+            else{
+            e=mid;
+            }
+        }
+    return s;
+    }
+}
