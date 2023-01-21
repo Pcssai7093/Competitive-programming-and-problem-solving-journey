@@ -1,0 +1,30 @@
+class Solution {
+
+    public static int prev=0,now=0,isBst=1,isPrev=0;
+    public static void In(TreeNode root){
+        if(root==null)
+        return;
+
+        In(root.left);
+        now=root.val;
+        if(isPrev==1)
+        if(now<=prev){
+            isBst=0;
+            return;
+        }
+        else{
+            prev=now;
+        }
+        else{
+            isPrev=1;
+            prev=now;
+        }
+        In(root.right);
+
+    }
+    public boolean isValidBST(TreeNode root) {
+        prev=-2000;now=0;isBst=1;isPrev=0;
+        In(root);
+        return isBst==0?false:true;
+    }
+}
