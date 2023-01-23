@@ -1,0 +1,32 @@
+class Solution {
+
+    public static int fun(int n){
+        int cnt=0;
+        while(n!=0){
+            if(n%2==1){
+                cnt++;
+            }     
+            n/=2;
+        }
+        // System.out.println(n+"  "+cnt);
+        return cnt;
+    }
+
+    public int[] sortByBits(int[] arr) {
+        List<Integer> l=Arrays.stream(arr).boxed().collect(Collectors.toList());
+        // List<Integer> l=Arrays.asList(narr);
+        // System.out.println(narr[0]);
+        // System.out.println(l);
+        // Collections.sort()
+        // System.out.println(fun(7));
+        Collections.sort(l,(a,b)->{
+            if(fun(a)==fun(b))
+            return (a-b);
+            return (fun(a)-fun(b));
+            });
+        // fun(6);
+        System.out.println(l);
+        int narr[]=l.stream().mapToInt(a->a).toArray();
+        return narr;
+    }
+}
