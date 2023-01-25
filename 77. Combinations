@@ -1,0 +1,36 @@
+class Solution {
+    public static List<List<Integer>> c=new ArrayList<>();
+    public static void genComb(ArrayList<Integer> l,int n,int k,int tsize,int num){
+        
+        if(tsize==k){
+            // l.add(num);
+            c.add(l);
+            return;
+        }
+
+        // l.add(num);
+        // tsize++;
+
+        // if(tsize<k)
+        for(int i=(num+1);i<=n;i++){
+            // System.out.println(num+" "+i+" "+l);
+            ArrayList<Integer> tl=new ArrayList<>();
+            tl.addAll(l);
+            tl.add(i);
+            // tsize++;
+            genComb(tl,n,k,tsize+1,i);
+            // l.clear()
+        }
+    }
+    public List<List<Integer>> combine(int n, int k) {
+        c.clear();
+        // if()
+        for(int i=1;i<(n+1);i++){
+        // System.out.println("hii");
+        ArrayList<Integer> l=new ArrayList<>();
+        l.add(i);
+        genComb(l,n,k,1,i);
+        }
+        return c;
+    }
+}
