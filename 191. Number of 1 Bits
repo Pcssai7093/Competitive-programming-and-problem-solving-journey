@@ -1,0 +1,13 @@
+public class Solution {
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        int setBits=0;
+        String bit=Integer.toBinaryString(n);
+        int len=bit.length();
+        for(int i=0;i<len;i++){
+            if(bit.charAt(i)=='1')
+            setBits++;
+        }
+        return setBits;
+    }
+}
