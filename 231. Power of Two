@@ -1,0 +1,13 @@
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if(n<0)
+        return false;
+        n=Math.abs(n);
+        // System.out.println(n-1);
+        // System.out.println(Integer.toBinaryString(n));
+        // System.out.println(Integer.toBinaryString(n-1));
+        if(n==0)
+        return false;
+        return ((n&(n-1))==0);
+    }
+}
