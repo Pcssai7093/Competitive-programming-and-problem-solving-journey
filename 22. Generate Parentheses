@@ -1,0 +1,51 @@
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+
+let parlist=[]
+function fun(stack,size,string,index,ary){
+    if(index==size){
+        console.log(stack)
+        if(stack.length==0){
+        parlist.push(string);
+        return;
+        }
+    }
+    if(index<size){
+        
+        for(let i=0;i<2;i++){
+            let tstring="";
+            tstring=tstring.concat(string);
+            tstring=tstring.concat(ary[i]);
+            let nstack=stack.slice();
+            let len=nstack.length;
+            if(len>0){
+                if(nstack[len-1]=='('&&nstack[len-1]!=ary[i]){
+                    nstack.pop();
+                }
+                else{
+                    nstack.push(ary[i]);
+                }
+            }
+            else{
+                 nstack.push(ary[i]);
+            }
+            fun(nstack,size,tstring,index+1,ary);
+        }
+
+    }
+}
+var generateParenthesis = function(n) {
+    parlist=[];
+    let ary=['(',')'];
+    let itr=2*n;
+    for(let i=0;i<2;i++){
+        let tstring="";
+        tstring=tstring.concat(ary[i]);
+        tstack=[]
+        tstack.push(ary[i])
+        fun(tstack,itr,tstring,1,ary);
+    }
+    return parlist;
+};
